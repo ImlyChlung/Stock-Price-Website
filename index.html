@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>陰陽燭圖表</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        img {
+            max-width: 90%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .fullscreen-btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>陰陽燭圖表</h1>
+    <form method="post" action="/">
+        <label for="ticker">輸入股票代號:</label>
+        <input type="text" id="ticker" name="ticker" required>
+        <br><br>
+        <label for="start_date">開始日期:</label>
+        <input type="date" id="start_date" name="start_date" required>
+        <br><br>
+        <label for="end_date">結束日期:</label>
+        <input type="date" id="end_date" name="end_date" required>
+        <br><br>
+        <input type="submit" value="更新圖表">
+    </form>
+    <img id="chart" src="data:image/png;base64,{{ img_data }}" alt="陰陽燭圖表" />
+    <button class="fullscreen-btn" onclick="toggleFullscreen()">切換全屏</button>
+
+    <script>
+        function toggleFullscreen() {
+            const chart = document.getElementById('chart');
+            if (!document.fullscreenElement) {
+                chart.requestFullscreen().catch(err => {
+                    alert(`進入全屏模式時發生錯誤: ${err.message} (${err.name})`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
