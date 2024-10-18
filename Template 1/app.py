@@ -2,8 +2,6 @@ import pandas as pd
 import yfinance as yf
 import mplfinance as mpf
 from flask import Flask, render_template, request
-import io
-import base64
 
 app = Flask(__name__)
 
